@@ -28,7 +28,7 @@ def context(browser: Browser):
     if hasattr(context, '_test_failed') and context._test_failed:
         trace_path = f"traces/test_trace_{context._test_name}.zip"
         context.tracing.stop(path=trace_path)
-        allure.attach.file(trace_path, name="Playwright Trace", attachment_type=allure.attachment_type.ZIP)
+        allure.attach.file(trace_path, name="Playwright Trace", attachment_type='application/zip')
     else:
         context.tracing.stop()
     context.close()
