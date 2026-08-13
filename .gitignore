@@ -5,3 +5,4 @@
 **/.env
 **/uploads/
 !**/uploads/.gitkeep
+**/traces/
