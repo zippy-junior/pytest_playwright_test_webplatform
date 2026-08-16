@@ -36,7 +36,7 @@ class TestAuthFlow:
         login_page.login("test@example.com", "password123")
         
         # Should redirect to main page
-        assert page.url.rstrip("/") in ["http://localhost:5173/", "http://localhost:5173"]
+        assert page.url.rstrip("/") in ["http://localhost:5137/", "http://localhost:5137"]
         login_page.take_screenshot("after_login")
 
     @allure.story("Вход с неверным паролем")

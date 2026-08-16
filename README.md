@@ -25,8 +25,8 @@ cd frontend
 npm install
 npm run dev
 
-Backend: http://localhost:8000
+Backend: http://localhost:8888
 
-Frontend: http://localhost:5173
+Frontend: http://localhost:5137
 
-API Docs: http://localhost:8000/docs
+API Docs: http://localhost:8888/docs

@@ -66,11 +66,11 @@ const Profile: React.FC = () => {
     <div className="container mx-auto px-4 py-8 max-w-2xl">
       <h1 className="text-3xl font-bold mb-6">Профиль</h1>
       {success && <div className="alert alert-success mb-4">{success}</div>}
-      
+
       <div className="card bg-base-100 shadow-xl mb-6">
         <div className="card-body items-center">
           {user?.photo_path ? (
-            <img src={`http://localhost:8000${user.photo_path}`} alt="Фото" className="w-32 h-32 rounded-full object-cover" />
+            <img src={`http://localhost:8888${user.photo_path}`} alt="Фото" className="w-32 h-32 rounded-full object-cover" />
           ) : (
             <div className="avatar placeholder">
               <div className="bg-neutral text-neutral-content w-32 rounded-full">

@@ -2,7 +2,7 @@ import allure
 from playwright.sync_api import Page
 
 class BasePage:
-    def __init__(self, page: Page, base_url: str = "http://localhost:5173"):
+    def __init__(self, page: Page, base_url: str = "http://localhost:5137"):
         self.page = page
         self.base_url = base_url
 

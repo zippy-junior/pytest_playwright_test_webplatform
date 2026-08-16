@@ -17,7 +17,7 @@ const NewsList: React.FC = () => {
       setDebouncedSearch(search);
       setPage(1); // Reset to first page on new search
     }, 500); // Wait 500ms after user stops typing
-    
+
     return () => clearTimeout(timer);
   }, [search]);
 
@@ -28,10 +28,10 @@ const NewsList: React.FC = () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
-      
+
       const abortController = new AbortController();
       abortControllerRef.current = abortController;
-      
+
       setLoading(true);
       try {
         const data = await getNews(page, 10, undefined, debouncedSearch || undefined);
@@ -48,9 +48,9 @@ const NewsList: React.FC = () => {
         }
       }
     };
-    
+
     fetchNews();
-    
+
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
@@ -95,28 +95,28 @@ const NewsList: React.FC = () => {
   // Estimate height of each card for balanced distribution
   const getCardEstimatedHeight = (item: NewsItem, index: number): number => {
     let height = 200; // Base height for card padding and footer
-    
+
     // Image height
     if (item.image_path) {
       height += 180;
     } else {
       height += 120; // Placeholder height
     }
-    
+
     // Title length
     if (item.title.length > 60) height += 40;
     else if (item.title.length > 30) height += 20;
-    
+
     // Subtitle
     if (item.subtitle && item.subtitle.length > 40) height += 30;
-    
+
     // Tags
     if (item.tags.length > 0) height += 25;
-    
+
     // Text length
     if (item.text.length > 200) height += 60;
     else if (item.text.length > 100) height += 30;
-    
+
     return height;
   };
 
@@ -124,18 +124,18 @@ const NewsList: React.FC = () => {
   const distributeItems = useMemo(() => {
     const columns: NewsItem[][] = Array.from({ length: columnCount }, () => []);
     const columnHeights: number[] = Array.from({ length: columnCount }, () => 0);
-    
+
     news.forEach((item, index) => {
       // Find the column with minimum height
       const minHeightIndex = columnHeights.indexOf(Math.min(...columnHeights));
-      
+
       // Add item to that column
       columns[minHeightIndex].push(item);
-      
+
       // Update column height
       columnHeights[minHeightIndex] += getCardEstimatedHeight(item, index);
     });
-    
+
     return columns;
   }, [news, columnCount]);
 
@@ -153,8 +153,8 @@ const NewsList: React.FC = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
           {search && (
-            <button 
-              className="btn btn-ghost join-item" 
+            <button
+              className="btn btn-ghost join-item"
               onClick={() => setSearch('')}
               aria-label="Очистить поиск"
             >
@@ -171,7 +171,7 @@ const NewsList: React.FC = () => {
       ) : (
         <>
           {/* Balanced Masonry Grid */}
-          <div 
+          <div
             className="grid gap-4 items-start"
             style={{
               gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`
@@ -185,11 +185,11 @@ const NewsList: React.FC = () => {
                       {/* Image or Placeholder */}
                       {item.image_path ? (
                         <figure className="w-full overflow-hidden">
-                          <img 
-                            src={`http://localhost:8000${item.image_path}`} 
-                            alt={item.title} 
+                          <img
+                            src={`http://localhost:8888${item.image_path}`}
+                            alt={item.title}
                             className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            style={{ 
+                            style={{
                               minHeight: '150px',
                               maxHeight: '250px'
                             }}
@@ -197,7 +197,7 @@ const NewsList: React.FC = () => {
                           />
                         </figure>
                       ) : (
-                        <div 
+                        <div
                           className={`w-full h-32 bg-gradient-to-br ${getPlaceholderGradient(item.id)} flex items-center justify-center`}
                         >
                           <span className="text-3xl text-white/70 font-bold">
@@ -225,8 +225,8 @@ const NewsList: React.FC = () => {
 
                         {/* Title */}
                         <h2 className="card-title text-base sm:text-lg leading-tight">
-                          <Link 
-                            to={`/news/${item.id}`} 
+                          <Link
+                            to={`/news/${item.id}`}
                             className="hover:text-primary transition-colors"
                             onClick={(e) => e.stopPropagation()}
                           >
@@ -252,8 +252,8 @@ const NewsList: React.FC = () => {
                             {item.author.photo_path ? (
                               <div className="avatar">
                                 <div className="w-6 h-6 rounded-full">
-                                  <img 
-                                    src={`http://localhost:8000${item.author.photo_path}`} 
+                                  <img
+                                    src={`http://localhost:8888${item.author.photo_path}`}
                                     alt={item.author.first_name}
                                   />
                                 </div>
@@ -297,7 +297,7 @@ const NewsList: React.FC = () => {
                 Попробуйте изменить поисковый запрос
               </p>
               {search && (
-                <button 
+                <button
                   className="btn btn-primary mt-4"
                   onClick={() => setSearch('')}
                 >
@@ -310,7 +310,7 @@ const NewsList: React.FC = () => {
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="join mt-8 flex justify-center">
-              <button 
+              <button
                 className="join-item btn"
                 onClick={() => setPage(p => Math.max(1, p - 1))}
                 disabled={page === 1}
@@ -324,7 +324,7 @@ const NewsList: React.FC = () => {
                     {index > 0 && arr[index - 1] !== p - 1 && (
                       <button className="join-item btn btn-disabled">...</button>
                     )}
-                    <button 
+                    <button
                       className={`join-item btn ${p === page ? 'btn-primary' : ''}`}
                       onClick={() => setPage(p)}
                     >
@@ -332,7 +332,7 @@ const NewsList: React.FC = () => {
                     </button>
                   </React.Fragment>
                 ))}
-              <button 
+              <button
                 className="join-item btn"
                 onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}

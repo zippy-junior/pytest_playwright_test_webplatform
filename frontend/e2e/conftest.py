@@ -4,8 +4,8 @@ from playwright.sync_api import Page, expect, Browser, BrowserContext
 import os
 from pathlib import Path
 
-BASE_URL = os.getenv("BASE_URL", "http://localhost:5173")
-API_URL = os.getenv("API_URL", "http://localhost:8000")
+BASE_URL = os.getenv("BASE_URL", "http://localhost:5137")
+API_URL = os.getenv("API_URL", "http://localhost:8888")
 
 @pytest.fixture(scope="session")
 def browser():

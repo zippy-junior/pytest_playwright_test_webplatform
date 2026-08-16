@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost text-xl">📰 NewsPlatform</Link>
       </div>
-      
+
       <div className="flex-none gap-2">
         {isAuthenticated ? (
           <>
@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 {user?.photo_path ? (
                   <div className="w-10 rounded-full">
-                    <img src={`http://localhost:8000${user.photo_path}`} alt="Avatar" />
+                    <img src={`http://localhost:8888${user.photo_path}`} alt="Avatar" />
                   </div>
                 ) : (
                   <div className="avatar placeholder">
