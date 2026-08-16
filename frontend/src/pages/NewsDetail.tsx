@@ -62,7 +62,7 @@ const NewsDetail: React.FC = () => {
         <span className="text-sm text-gray-500">{new Date(news.created_at).toLocaleDateString()}</span>
       </div>
       {news.image_path && (
-        <img src={`http://localhost:8888${news.image_path}`} alt={news.title} className="w-full rounded-lg mb-6" />
+        <img src={`http://backend:8888${news.image_path}`} alt={news.title} className="w-full rounded-lg mb-6" />
       )}
       <div className="prose max-w-none">
         <p className="whitespace-pre-wrap">{news.text}</p>

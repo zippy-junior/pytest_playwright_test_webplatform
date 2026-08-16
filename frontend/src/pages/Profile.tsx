@@ -70,7 +70,7 @@ const Profile: React.FC = () => {
       <div className="card bg-base-100 shadow-xl mb-6">
         <div className="card-body items-center">
           {user?.photo_path ? (
-            <img src={`http://localhost:8888${user.photo_path}`} alt="Фото" className="w-32 h-32 rounded-full object-cover" />
+            <img src={`http://backend:8888${user.photo_path}`} alt="Фото" className="w-32 h-32 rounded-full object-cover" />
           ) : (
             <div className="avatar placeholder">
               <div className="bg-neutral text-neutral-content w-32 rounded-full">

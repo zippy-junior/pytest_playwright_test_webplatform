@@ -186,7 +186,7 @@ const NewsList: React.FC = () => {
                       {item.image_path ? (
                         <figure className="w-full overflow-hidden">
                           <img
-                            src={`http://localhost:8888${item.image_path}`}
+                            src={`http://backend:8888${item.image_path}`}
                             alt={item.title}
                             className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
                             style={{
@@ -253,7 +253,7 @@ const NewsList: React.FC = () => {
                               <div className="avatar">
                                 <div className="w-6 h-6 rounded-full">
                                   <img
-                                    src={`http://localhost:8888${item.author.photo_path}`}
+                                    src={`http://backend:8888${item.author.photo_path}`}
                                     alt={item.author.first_name}
                                   />
                                 </div>
