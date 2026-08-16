@@ -1,11 +1,14 @@
-# frontend/Dockerfile
-FROM node:18-alpine as builder
+# frontend/Dockerfile.prod
+FROM node:20-alpine as builder
 
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
-RUN npm ci
+
+# Use npm install instead of npm ci if you don't have package-lock.json
+# Or use npm ci if package-lock.json exists
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
 # Copy source code
 COPY . .
@@ -18,7 +21,7 @@ ENV VITE_API_URL=$VITE_API_URL
 RUN npm run build
 
 # Production stage
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 

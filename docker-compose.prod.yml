@@ -63,13 +63,13 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.prod
       args:
-        VITE_API_URL: ${VITE_API_URL}
+        VITE_API_URL: ${VITE_API_URL:-https://archiscope.ru}
     container_name: news_frontend_prod
     restart: unless-stopped
     depends_on:
       - backend
     environment:
-      VITE_API_URL: ${VITE_API_URL}
+      VITE_API_URL: ${VITE_API_URL:-https://archiscope.ru}
     volumes:
       - frontend_build:/app/dist
     command: sh -c "npm run build && cp -r dist/* /app/build/"
