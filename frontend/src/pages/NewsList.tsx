@@ -37,7 +37,7 @@ const NewsList: React.FC = () => {
         const data = await getNews(page, 10, undefined, debouncedSearch || undefined);
         setNews(data.items);
         setTotalPages(data.total_pages);
-      } catch (error) {
+      } catch (error: any) {
         // Don't show error for aborted requests
         if (error.name !== 'AbortError') {
           console.error('Error fetching news:', error);
